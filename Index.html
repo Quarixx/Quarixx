@@ -1,0 +1,190 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarixx - Your AI Assistant</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#0f0f1a; color:#eee; }
+  header { padding:20px 40px; display:flex; justify-content:space-between; align-items:center; background:#14142b; position:sticky; top:0; z-index:10; }
+  header h1 { color:#8b5cf6; }
+  nav a { color:#eee; margin-left:25px; text-decoration:none; font-size:15px; }
+  nav a:hover { color:#8b5cf6; }
+
+  .hero { text-align:center; padding:80px 20px; background: linear-gradient(135deg,#1a1a3a,#0f0f1a); }
+  .hero h2 { font-size:42px; margin-bottom:15px; }
+  .hero p { font-size:18px; color:#bbb; margin-bottom:30px; }
+  .btn { background:#8b5cf6; color:#fff; padding:14px 30px; border:none; border-radius:8px; font-size:16px; cursor:pointer; text-decoration:none; display:inline-block; }
+  .btn:hover { background:#7c3aed; }
+  .btn-outline { border:2px solid #8b5cf6; color:#8b5cf6; background:transparent; margin-left:15px; }
+
+  section { padding:60px 40px; max-width:1000px; margin:0 auto; }
+  section h3 { font-size:28px; margin-bottom:20px; color:#8b5cf6; border-bottom:2px solid #2a2a4a; padding-bottom:10px; }
+
+  .chat-box { background:#1a1a2e; border-radius:12px; padding:20px; min-height:250px; display:flex; flex-direction:column; }
+  .chat-messages { flex:1; overflow-y:auto; margin-bottom:15px; }
+  .msg { padding:10px 15px; border-radius:10px; margin-bottom:10px; max-width:80%; }
+  .msg.user { background:#8b5cf6; align-self:flex-end; margin-left:auto; }
+  .msg.bot { background:#2a2a4a; }
+  .chat-input { display:flex; gap:10px; }
+  .chat-input input { flex:1; padding:12px; border-radius:8px; border:none; background:#2a2a4a; color:#eee; }
+  .chat-input button { padding:12px 20px; border:none; border-radius:8px; background:#8b5cf6; color:#fff; cursor:pointer; }
+
+  .cards { display:flex; gap:20px; flex-wrap:wrap; }
+  .card { background:#1a1a2e; border-radius:12px; padding:25px; flex:1; min-width:260px; }
+  .card h4 { color:#8b5cf6; margin-bottom:10px; }
+  .card .price { font-size:14px; color:#aaa; margin-top:10px; }
+  .pro-tag { background:#f59e0b; color:#000; font-size:12px; padding:3px 8px; border-radius:5px; margin-left:8px; }
+
+  .pricing { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+  .plan { background:#1a1a2e; border-radius:12px; padding:30px; width:260px; text-align:center; }
+  .plan.highlight { border:2px solid #8b5cf6; }
+  .plan .amount { font-size:32px; color:#8b5cf6; margin:15px 0; }
+
+  form { background:#1a1a2e; border-radius:12px; padding:25px; display:flex; flex-direction:column; gap:12px; }
+  form textarea, form input { padding:12px; border-radius:8px; border:none; background:#2a2a4a; color:#eee; font-size:15px; }
+  form button { padding:12px; border:none; border-radius:8px; background:#8b5cf6; color:#fff; cursor:pointer; font-size:15px; }
+
+  footer { text-align:center; padding:30px; color:#777; font-size:14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Quarixx</h1>
+  <nav>
+    <a href="#assistant">AI Assistant</a>
+    <a href="#maker">App/Website Maker</a>
+    <a href="#video">AI Video</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#feedback">Feedback</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Quarixx — Your Personal AI Assistant</h2>
+  <p>Not available on Play Store. Download only from this website.</p>
+  <a href="#" class="btn" id="downloadBtn">Download Quarixx</a>
+  <a href="#pricing" class="btn btn-outline">View Pro Plans</a>
+</section>
+
+<section id="assistant">
+  <h3>AI Assistant Chat</h3>
+  <div class="chat-box">
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">Hi! I'm Quarixx, your AI assistant. How can I help you today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</section>
+
+<section id="maker">
+  <h3>App &amp; Website Maker</h3>
+  <div class="cards">
+    <div class="card">
+      <h4>Normal App Maker</h4>
+      <p>Build a simple app without any coding.</p>
+      <div class="price">Free</div>
+    </div>
+    <div class="card">
+      <h4>Normal Website Maker</h4>
+      <p>Build your website in just a few minutes.</p>
+      <div class="price">Free</div>
+    </div>
+    <div class="card">
+      <h4>High-Level App Maker <span class="pro-tag">PRO</span></h4>
+      <p>Build a professional app with advanced features.</p>
+      <div class="price">$10</div>
+    </div>
+    <div class="card">
+      <h4>High-Level Website Maker <span class="pro-tag">PRO</span></h4>
+      <p>Build an advanced, professional website.</p>
+      <div class="price">$10</div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <h3>AI Video Maker</h3>
+  <div class="card">
+    <h4>Create AI Videos</h4>
+    <p>Just give a description and generate an AI video.</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <h3>Pricing</h3>
+  <div class="pricing">
+    <div class="plan">
+      <h4>Free</h4>
+      <div class="amount">$0</div>
+      <p>AI Assistant Chat, Normal App Maker, Normal Website Maker</p>
+    </div>
+    <div class="plan highlight">
+      <h4>Pro</h4>
+      <div class="amount">$10</div>
+      <p>High-Level App Maker, High-Level Website Maker, AI Video Maker, Claude-like advanced features</p>
+    </div>
+  </div>
+</section>
+
+<section id="feedback">
+  <h3>Complaint Box</h3>
+  <form onsubmit="return submitForm(event,'complaint')">
+    <input type="text" placeholder="Your name" required>
+    <textarea rows="4" placeholder="Describe the issue with the assistant or website..." required></textarea>
+    <button type="submit">Submit Complaint</button>
+  </form>
+
+  <h3 style="margin-top:40px;">Suggestion / Advice Box</h3>
+  <form onsubmit="return submitForm(event,'suggestion')">
+    <input type="text" placeholder="Your name" required>
+    <textarea rows="4" placeholder="Suggest a change or improvement for the assistant..." required></textarea>
+    <button type="submit">Submit Suggestion</button>
+  </form>
+</section>
+
+<footer>
+  © 2026 Quarixx AI Assistant. All rights reserved.
+</footer>
+
+<script>
+function sendMessage(){
+  const input = document.getElementById('userInput');
+  const messages = document.getElementById('chatMessages');
+  if(!input.value.trim()) return;
+  const userMsg = document.createElement('div');
+  userMsg.className = 'msg user';
+  userMsg.textContent = input.value;
+  messages.appendChild(userMsg);
+
+  const botMsg = document.createElement('div');
+  botMsg.className = 'msg bot';
+  botMsg.textContent = 'This is a demo reply. Connect a backend API for real AI responses.';
+  setTimeout(()=> messages.appendChild(botMsg), 500);
+
+  input.value='';
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function submitForm(e, type){
+  e.preventDefault();
+  alert(type === 'complaint' ? 'Your complaint has been submitted. Thank you!' : 'Your suggestion has been submitted. Thank you!');
+  e.target.reset();
+  return false;
+}
+
+document.getElementById('downloadBtn').addEventListener('click', function(e){
+  e.preventDefault();
+  alert('Add your download link here — e.g. your APK file link.');
+});
+</script>
+
+</body>
+</html>
+```
